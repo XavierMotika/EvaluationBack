@@ -4,13 +4,24 @@ import fr.idformation.evaluation.security.models.User;
 
 public class UserDto {
 
+	/**
+	 * the user name.
+	 */
 	private String username;
 
+	/**
+	 * the user role.
+	 */
 	private String role;
 
-	public UserDto(User user) {
-		this.username = user.getUsername();
-		this.role = user.getRoles().iterator().next().getName().name();
+	/**
+	 * The UserDTO construction.
+	 *
+	 * @param pUser the user to be converted to a DTO
+	 */
+	public UserDto(final User pUser) {
+		this.username = pUser.getUsername();
+		this.role = pUser.getRoles().iterator().next().getName().name();
 
 	}
 
@@ -29,17 +40,17 @@ public class UserDto {
 	}
 
 	/**
-	 * @param role the role to set
+	 * @param pRole the role to set
 	 */
-	public void setRole(String role) {
-		this.role = role;
+	public void setRole(final String pRole) {
+		this.role = pRole;
 	}
 
 	/**
-	 * @param username the username to set
+	 * @param pUsername the username to set
 	 */
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUsername(final String pUsername) {
+		this.username = pUsername;
 	}
 
 }

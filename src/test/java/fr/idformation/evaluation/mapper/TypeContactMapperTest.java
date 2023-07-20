@@ -3,6 +3,7 @@ package fr.idformation.evaluation.mapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import fr.idformation.evaluation.ConstantList;
 import fr.idformation.evaluation.core.domain.TypeContact;
 import fr.idformation.evaluation.core.dto.TypeContactDTO;
 import fr.idformation.evaluation.core.dto.mapper.TypeContactMapper;
@@ -59,7 +60,7 @@ public class TypeContactMapperTest {
 		// when
 		TypeContact typeContact = TypeContactMapper.dTOToTypeContact(typeContactDTO);
 		// then
-		Assert.isTrue(typeContact.getId() == 1, "Should be 1, but it isn't");
+		Assert.isTrue(typeContact.getId() == ConstantList.TELEPHONE, "Should be 1, but it isn't");
 	}
 
 	@Test
@@ -69,7 +70,7 @@ public class TypeContactMapperTest {
 		// when
 		TypeContact typeContact = TypeContactMapper.dTOToTypeContact(typeContactDTO);
 		// then
-		Assert.isTrue(typeContact.getId() == 2, "Should be 2, but it isn't");
+		Assert.isTrue(typeContact.getId() == ConstantList.EMAIL, "Should be 2, but it isn't");
 	}
 
 	@Test
@@ -79,7 +80,7 @@ public class TypeContactMapperTest {
 		// when
 		TypeContact typeContact = TypeContactMapper.dTOToTypeContact(typeContactDTO);
 		// then
-		Assert.isTrue(typeContact.getId() == 3, "Should be 3, but it isn't");
+		Assert.isTrue(typeContact.getId() == ConstantList.FAX, "Should be 3, but it isn't");
 	}
 
 	@Test
@@ -89,7 +90,7 @@ public class TypeContactMapperTest {
 		// when
 		TypeContact typeContact = TypeContactMapper.dTOToTypeContact(typeContactDTO);
 		// then
-		Assert.isTrue(typeContact.getId() == 4, "Should be 4, but it isn't");
+		Assert.isTrue(typeContact.getId() == ConstantList.PORTABLE, "Should be 4, but it isn't");
 	}
 
 }

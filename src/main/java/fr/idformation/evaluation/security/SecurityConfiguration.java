@@ -26,6 +26,9 @@ public class SecurityConfiguration {
 	@Autowired
 	private UserDetailsService userDetailsService;
 
+	/**
+	 * @return a new providerManager
+	 */
 	@Bean
 	public AuthenticationManager authenticationManager() {
 		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -35,9 +38,15 @@ public class SecurityConfiguration {
 		return new ProviderManager(authProvider);
 	}
 
+	/**
+	 *
+	 *
+	 * @param http the http to be built
+	 * @return the built Http security
+	 * @throws Exception
+	 */
 	@Bean
-
-	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+	public SecurityFilterChain filterChain(final HttpSecurity http) throws Exception {
 
 		http.cors(Customizer.withDefaults());
 		http.csrf(csrf -> csrf.disable());
@@ -56,6 +65,10 @@ public class SecurityConfiguration {
 		return http.build();
 	}
 
+	/**
+	 *
+	 * @return the JWT authenticationfilter
+	 */
 	@Bean
 	public JwtAuthenticationFilter jwtAuthenticationFilter() {
 		return new JwtAuthenticationFilter();

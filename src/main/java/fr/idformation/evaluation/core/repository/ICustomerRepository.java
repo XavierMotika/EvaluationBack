@@ -10,6 +10,12 @@ import fr.idformation.evaluation.core.domain.Customer;
 @Repository
 public interface ICustomerRepository extends JpaRepository<Customer, Integer> {
 
-	Set<Customer> findBylastNameStartingWith(String string);
+	/**
+	 * Searches for clients in the data base using a given string.
+	 *
+	 * @param pString the string to search the client's names with
+	 * @return a filtered set of customer
+	 */
+	Set<Customer> findBylastNameStartingWith(String pString);
 
 }

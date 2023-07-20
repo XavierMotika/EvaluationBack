@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.springframework.lang.NonNull;
 
+import fr.idformation.evaluation.ConstantList;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -23,77 +24,143 @@ import jakarta.validation.constraints.Size;
 @Table(name = "users", uniqueConstraints = { @UniqueConstraint(columnNames = "username"),
 		@UniqueConstraint(columnNames = "email") })
 public class User {
+
+	/**
+	 * the entity's id.
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
 
+	/**
+	 * the entity's username.
+	 */
 	@NonNull
-	@Size(max = 100)
+	@Size(max = ConstantList.MAX_SIZE)
 	@Column(name = "username")
 	private String username;
 
+	/**
+	 * the entity's email.
+	 */
 	@NonNull
 	@Email
-	@Size(max = 100)
+	@Size(max = ConstantList.MAX_SIZE)
 	@Column(name = "email")
 	private String email;
 
+	/**
+	 * the entity's password.
+	 */
 	@NonNull
-	@Size(max = 120)
+	@Size(max = ConstantList.PASSWORD_MAX_SIZE)
 	@Column(name = "password")
 	private String password;
 
+	/**
+	 * the entity's roles.
+	 */
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
 
+	/**
+	 * Default consturctor.
+	 */
 	public User() {
 	}
 
-	public User(String username, String email, String password) {
-		this.username = username;
-		this.email = email;
-		this.password = password;
+	/**
+	 * User constructor.
+	 *
+	 * @param pUsername
+	 * @param pEmail
+	 * @param pPassword
+	 */
+	public User(final String pUsername, final String pEmail, final String pPassword) {
+		this.username = pUsername;
+		this.email = pEmail;
+		this.password = pPassword;
 	}
 
+	/**
+	 *
+	 * @return the entity's email
+	 */
 	public String getEmail() {
 		return email;
 	}
 
+	/**
+	 *
+	 * @return the entity's id
+	 */
 	public Long getId() {
 		return id;
 	}
 
+	/**
+	 *
+	 * @return the entity's password
+	 */
 	public String getPassword() {
 		return password;
 	}
 
+	/**
+	 *
+	 * @return the entity's roles
+	 */
 	public Set<Role> getRoles() {
 		return roles;
 	}
 
+	/**
+	 *
+	 * @return the entity's user name
+	 */
 	public String getUsername() {
 		return username;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	/**
+	 *
+	 * @param pEmail the email to be set
+	 */
+	public void setEmail(final String pEmail) {
+		this.email = pEmail;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	/**
+	 *
+	 * @param pId the id to be set
+	 */
+	public void setId(final Long pId) {
+		this.id = pId;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	/**
+	 *
+	 * @param pPassword the password to be set
+	 */
+	public void setPassword(final String pPassword) {
+		this.password = pPassword;
 	}
 
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
+	/**
+	 *
+	 * @param pRoles the roles to be set
+	 */
+	public void setRoles(final Set<Role> pRoles) {
+		this.roles = pRoles;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	/**
+	 *
+	 * @param pUsername the username to be set
+	 */
+	public void setUsername(final String pUsername) {
+		this.username = pUsername;
 	}
 }

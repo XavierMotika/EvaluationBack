@@ -2,8 +2,14 @@ package fr.idformation.evaluation.security.dto;
 
 public class LoginRequest {
 
+	/**
+	 * The user name.
+	 */
 	private String username;
 
+	/**
+	 * The password.
+	 */
 	private String password;
 
 	/**
@@ -28,17 +34,17 @@ public class LoginRequest {
 	}
 
 	/**
-	 * @param password the password to set
+	 * @param pPassword the password to set
 	 */
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPassword(final String pPassword) {
+		this.password = pPassword;
 	}
 
 	/**
-	 * @param username the username to set
+	 * @param pUsername the username to set
 	 */
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUsername(final String pUsername) {
+		this.username = pUsername;
 	}
 
 }

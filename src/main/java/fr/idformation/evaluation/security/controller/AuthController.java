@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.idformation.evaluation.ConstantList;
 import fr.idformation.evaluation.security.dto.JwtResponse;
 import fr.idformation.evaluation.security.dto.LoginRequest;
 import fr.idformation.evaluation.security.dto.UserDto;
@@ -30,7 +31,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin(origins = { "http://localhost:3000", "https://test-cd413.web.app/" }, maxAge = 3600)
+@CrossOrigin(origins = { "http://localhost:3000", "https://test-cd413.web.app/" }, maxAge = ConstantList.MAX_AGE)
 public final class AuthController {
 
 	/** token header to use in JWT. */

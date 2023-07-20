@@ -4,9 +4,19 @@ import java.util.Date;
 
 public class JwtResponse {
 
+	/**
+	 * the jwt.
+	 */
 	private String jwt;
+
+	/**
+	 * the expiration date.
+	 */
 	private Date expiration;
 
+	/**
+	 * the user's DTO.
+	 */
 	private UserDto user;
 
 	/**
@@ -51,24 +61,24 @@ public class JwtResponse {
 	}
 
 	/**
-	 * @param expiration the expiration to set
+	 * @param pExpiration the expiration to set
 	 */
-	public void setExpiration(Date expiration) {
-		this.expiration = expiration;
+	public void setExpiration(final Date pExpiration) {
+		this.expiration = pExpiration;
 	}
 
 	/**
-	 * @param jwt the jwt to set
+	 * @param pJwt the jwt to set
 	 */
-	public void setJwt(String jwt) {
-		this.jwt = jwt;
+	public void setJwt(final String pJwt) {
+		this.jwt = pJwt;
 	}
 
 	/**
-	 * @param user the user to set
+	 * @param pUser the user to set
 	 */
-	public void setUser(UserDto user) {
-		this.user = user;
+	public void setUser(final UserDto pUser) {
+		this.user = pUser;
 	}
 
 }

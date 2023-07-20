@@ -147,18 +147,29 @@ public class CustomerMapperTest {
 
 	}
 
-	public Customer newCustomerTest(Customer customer) {
-		customer.setId(0);
-		customer.setFirstName("first name");
-		customer.setLastName("fast name");
-		customer.setAdress("adress");
-		customer.setZipCode("00000");
-		customer.setCountry("country");
-		customer.setContacts(new HashSet<Contact>());
-		customer.addContact(ContactMapperTest.newContactTest(new Contact()));
-		customer.addContact(ContactMapperTest.newContactTest(new Contact()));
-		customer.addContact(ContactMapperTest.newContactTest(new Contact()));
-		return customer;
+	/**
+	 * Method that set data to a customer.
+	 *
+	 * @param customer
+	 * @return the same customer with datas
+	 */
+	public Customer newCustomerTest(final Customer customer) {
+		Customer newCustomer = null;
+		if (customer != null) {
+			newCustomer = new Customer();
+			newCustomer.setId(0);
+			newCustomer.setFirstName("first name");
+			newCustomer.setLastName("fast name");
+			newCustomer.setAdress("adress");
+			newCustomer.setZipCode("00000");
+			newCustomer.setCountry("country");
+			newCustomer.setContacts(new HashSet<Contact>());
+			newCustomer.addContact(ContactMapperTest.newContactTest(new Contact()));
+			newCustomer.addContact(ContactMapperTest.newContactTest(new Contact()));
+			newCustomer.addContact(ContactMapperTest.newContactTest(new Contact()));
+		}
+
+		return newCustomer;
 	}
 
 }

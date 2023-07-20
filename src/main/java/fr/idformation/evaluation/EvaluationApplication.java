@@ -6,7 +6,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class EvaluationApplication {
 
-	public static void main(String[] args) {
+	/**
+	 * Main class that boots the app.
+	 *
+	 * @param args
+	 */
+	public static void main(final String[] args) {
 		SpringApplication.run(EvaluationApplication.class, args);
 	}
 

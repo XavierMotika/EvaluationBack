@@ -19,35 +19,56 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
+	/**
+	 * The token header can be found in application.properties.
+	 */
 	@Value("${app.jwtTokenHeader}")
 	private String tokenHeader;
 
+	/**
+	 * The token provider.
+	 */
 	@Autowired
 	private JwtProvider tokenProvider;
+
+	/**
+	 * The service for UserDetails.
+	 */
 	@Autowired
 	private UserDetailsService userDetailsService;
 
+	/**
+	 * If a JWT exists, it is extracted from the user, details are loaded, an
+	 * authentication is created and is stored.
+	 */
 	@Override
-	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-			throws ServletException, IOException {
+	protected void doFilterInternal(final HttpServletRequest pRequest, final HttpServletResponse pResponse,
+			final FilterChain pFilterChain) throws ServletException, IOException {
 		try {
-			String jwt = getJwtFromRequest(request);
+			String jwt = getJwtFromRequest(pRequest);
 			if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
 				String username = tokenProvider.getUserUsernameFromJWT(jwt);
 				UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 				UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
 						userDetails, null, userDetails.getAuthorities());
-				authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+				authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(pRequest));
 				SecurityContextHolder.getContext().setAuthentication(authentication);
 			}
 		} catch (Exception ex) {
 			logger.error("Could not set user authentication in security context", ex);
 		}
-		filterChain.doFilter(request, response);
+		pFilterChain.doFilter(pRequest, pResponse);
 	}
 
-	private String getJwtFromRequest(HttpServletRequest request) {
-		String bearerToken = request.getHeader("Authorization");
+	/**
+	 * the JWT must be in the request header, it has to be an authorization one and
+	 * has to begin with the defined token header.
+	 *
+	 * @param pRequest
+	 * @return the bearer token if request successfull or null if not
+	 */
+	private String getJwtFromRequest(final HttpServletRequest pRequest) {
+		String bearerToken = pRequest.getHeader("Authorization");
 		if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(tokenHeader)) {
 			return bearerToken.substring(tokenHeader.length() + 1, bearerToken.length());
 		}

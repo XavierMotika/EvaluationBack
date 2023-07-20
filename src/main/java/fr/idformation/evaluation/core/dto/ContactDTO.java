@@ -2,16 +2,19 @@ package fr.idformation.evaluation.core.dto;
 
 public class ContactDTO {
 
+	/**
+	 * The Contact DTO's id.
+	 */
 	private Integer id;
 
 	/**
-	 * The Contact DTO's linked typeContact
+	 * The Contact DTO's linked typeContact.
 	 */
 	private String typeContactDTO;
 
 	/**
 	 * The Contact DTO's value can be either a phone number, an email, a fax or a
-	 * mobile phone number
+	 * mobile phone number.
 	 */
 	private String value;
 
@@ -23,10 +26,10 @@ public class ContactDTO {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param pId the id to set
 	 */
-	public void setId(Integer id) {
-		this.id = id;
+	public void setId(final Integer pId) {
+		this.id = pId;
 	}
 
 	/**
@@ -37,10 +40,10 @@ public class ContactDTO {
 	}
 
 	/**
-	 * @param typeContact the DTO's typeContact to set
+	 * @param pTypeContactDTO the DTO's typeContact to set
 	 */
-	public void setTypeContact(String typeContactDTO) {
-		this.typeContactDTO = typeContactDTO;
+	public void setTypeContact(final String pTypeContactDTO) {
+		this.typeContactDTO = pTypeContactDTO;
 	}
 
 	/**
@@ -51,14 +54,14 @@ public class ContactDTO {
 	}
 
 	/**
-	 * @param value the DTO's value to set
+	 * @param pValue the DTO's value to set
 	 */
-	public void setValue(String value) {
-		this.value = value;
+	public void setValue(final String pValue) {
+		this.value = pValue;
 	}
 
 	/**
-	 * The Contact DTO's default contructor
+	 * The Contact DTO's default contructor.
 	 */
 	public ContactDTO() {
 		super();

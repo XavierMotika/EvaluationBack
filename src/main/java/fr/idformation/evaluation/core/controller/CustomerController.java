@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.idformation.evaluation.ConstantList;
 import fr.idformation.evaluation.core.domain.Customer;
 import fr.idformation.evaluation.core.dto.CustomerDTO;
 import fr.idformation.evaluation.core.dto.mapper.CustomerMapper;
@@ -23,22 +24,25 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/GestionClient")
-@CrossOrigin(origins = { "http://localhost:3000" }, maxAge = 3600)
+@CrossOrigin(origins = { "http://localhost:3000" }, maxAge = ConstantList.MAX_AGE)
 
 public class CustomerController {
 
+	/**
+	 *
+	 */
 	@Autowired
 	private ICustomerService customerService;
 
 	/**
-	 * Method that searchs for a filtered list of customer (using a name filter)
+	 * Method that searchs for a filtered list of customer (using a name filter).
 	 *
 	 * @param string the string sequence the customer is searched for
 	 * @return the set of filterd Customer DTO
 	 */
 	@PreAuthorize("hasAnyRole('USER','ADMIN')")
 	@GetMapping("/")
-	public Set<CustomerDTO> findByNameStartingWith(@RequestParam("search") String string) {
+	public Set<CustomerDTO> findByNameStartingWith(@RequestParam("search") final String string) {
 		return CustomerMapper.customersToDTOs(customerService.findByNameStartingWith(string));
 	}
 
@@ -54,8 +58,8 @@ public class CustomerController {
 	 */
 	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/edit/{id}")
-	public boolean updateCustomer(@PathVariable Integer id, @RequestBody CustomerDTO customerDTO,
-			HttpServletResponse response) {
+	public boolean updateCustomer(@PathVariable final Integer id, @RequestBody final CustomerDTO customerDTO,
+			final HttpServletResponse response) {
 		Optional<Customer> customer = customerService.getOneCustomer(id);
 		if (customer == null || !customer.isPresent()) {
 			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
@@ -75,7 +79,7 @@ public class CustomerController {
 	 */
 	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/{id}")
-	public CustomerDTO getOneCustomer(@PathVariable Integer id, HttpServletResponse response) {
+	public CustomerDTO getOneCustomer(@PathVariable final Integer id, final HttpServletResponse response) {
 		Optional<Customer> customer = customerService.getOneCustomer(id);
 		if (customer == null || !customer.isPresent()) {
 			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
@@ -95,7 +99,7 @@ public class CustomerController {
 	 */
 	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("/delete/{id}")
-	public boolean deleteCustomer(@PathVariable Integer id, HttpServletResponse response) {
+	public boolean deleteCustomer(@PathVariable final Integer id, final HttpServletResponse response) {
 		Optional<Customer> customer = customerService.getOneCustomer(id);
 		if (customer == null || !customer.isPresent()) {
 			response.setStatus(HttpServletResponse.SC_NOT_FOUND);

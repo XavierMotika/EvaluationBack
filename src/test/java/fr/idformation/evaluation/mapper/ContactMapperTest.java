@@ -50,12 +50,12 @@ public class ContactMapperTest {
 	@Test
 	void nullDTOToContactsReturnsNull() {
 		// given
-		ContactDTO ContactDTO = null;
+		ContactDTO contactDTO = null;
 
 		// when
-		Contact Contact = ContactMapper.dTOToContact(ContactDTO, new Customer());
+		Contact contact = ContactMapper.dTOToContact(contactDTO, new Customer());
 		// then
-		Assert.isTrue(Contact == null, "Should be null, but it isn't");
+		Assert.isTrue(contact == null, "Should be null, but it isn't");
 	}
 
 	@Test
@@ -122,15 +122,26 @@ public class ContactMapperTest {
 
 	}
 
-	static public Contact newContactTest(Contact contact) {
-		contact.setId(0);
-		contact.setValue("value");
-		contact.setCustomer(new Customer());
-		TypeContact type = new TypeContact();
-		type.setId((short) 1);
-		type.setLabel("Télépohone");
-		contact.setTypeContact(type);
-		return contact;
+	/**
+	 * Method that sets data to a contact.
+	 *
+	 * @param contact
+	 * @return the same contact with datas
+	 */
+	public static Contact newContactTest(final Contact contact) {
+		Contact newContact = null;
+		if (contact != null) {
+			newContact = new Contact();
+			newContact.setId(0);
+			newContact.setValue("value");
+			newContact.setCustomer(new Customer());
+			TypeContact type = new TypeContact();
+			type.setId((short) 1);
+			type.setLabel("Télépohone");
+			newContact.setTypeContact(type);
+		}
+
+		return newContact;
 	}
 
 }

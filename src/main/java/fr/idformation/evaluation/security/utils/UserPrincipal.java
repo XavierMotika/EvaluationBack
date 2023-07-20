@@ -7,11 +7,29 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public final class UserPrincipal implements UserDetails {
 
+	/**
+	 *
+	 */
 	private static final long serialVersionUID = 928073442559839991L;
 
+	/**
+	 *
+	 */
 	private String username;
+
+	/**
+	 *
+	 */
 	private String password;
+
+	/**
+	 *
+	 */
 	private boolean enabled;
+
+	/**
+	 *
+	 */
 	private Collection<? extends GrantedAuthority> authorities;
 
 	@Override
@@ -49,19 +67,35 @@ public final class UserPrincipal implements UserDetails {
 		return enabled;
 	}
 
-	public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
-		this.authorities = authorities;
+	/**
+	 *
+	 * @param pAuthorities the authority to be set
+	 */
+	public void setAuthorities(final Collection<? extends GrantedAuthority> pAuthorities) {
+		this.authorities = pAuthorities;
 	}
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
+	/**
+	 *
+	 * @param pEnabled the boolean to be set
+	 */
+	public void setEnabled(final boolean pEnabled) {
+		this.enabled = pEnabled;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	/**
+	 *
+	 * @param pPassword the password to be set
+	 */
+	public void setPassword(final String pPassword) {
+		this.password = pPassword;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	/**
+	 *
+	 * @param pUsername the username to be set
+	 */
+	public void setUsername(final String pUsername) {
+		this.username = pUsername;
 	}
 }
